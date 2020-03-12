@@ -36,10 +36,7 @@ class ModuleController extends Controller
 		$res = ['success'=>false,'data'=>false,'error'=>[]];
 		
         $validator = \Validator::make($request->all(), [
-            'still_wine_rate' => 'required|numeric|between:0,99.99',
-            'sparkling_wine_rate' => 'required|numeric|between:0,99.99',
-            'fortified_wine_rate' => 'required|numeric|between:0,99.99',
-            'litre_calc' => 'required|int',
+            'problem_postcodes' => 'required',
         ]);
 		
 		if($validator->fails()){
@@ -50,12 +47,9 @@ class ModuleController extends Controller
 		$formdata = $request->json()->all();
 		Log::debug($formdata);
 		
-		/* $valuestore = Valuestore::make(storage_path('app/delivery.json'));
+		$valuestore = Valuestore::make(storage_path('app/delivery.json'));
 		$valuestore->put('enabled', $formdata['enabled']);
-		$valuestore->put('still_wine_rate', $formdata['still_wine_rate']);
-		$valuestore->put('sparkling_wine_rate', $formdata['sparkling_wine_rate']);
-		$valuestore->put('fortified_wine_rate', $formdata['fortified_wine_rate']);
-		$valuestore->put('litre_calc', $formdata['litre_calc']); */
+		$valuestore->put('problem_postcodes', $formdata['problem_postcodes']);
 		
 		
         return redirect(route('admin.modules.delivery'));
