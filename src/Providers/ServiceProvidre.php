@@ -23,16 +23,12 @@ class ServiceProvider extends ModuleServiceProvider
     {
         Settings::group('Delivery', function (SettingGroup $group) {
             $group->boolean('enabled')->default(true);
-            $group->integer('stock_threshold')->default(0);
-            $group->integer('price_threshold')->default(500);
-            $group->integer('margin_markup')->default(10);
+            $group->string('problem_postcodes')->default('AB,BT,CA,DD,DG,EH,FK,G,HS,IM,IV,KA,KA,KW,KY,ML,NE,PA,PA,PH,PL,PO,SR,TD,TQ,TR,ZE');
         });
 		
 		$valuestore = Valuestore::make(storage_path('app/delivery.json'));
 		$valuestore->put('enabled', '1');
-		$valuestore->put('stock_threshold', '0');
-		$valuestore->put('price_threshold', '500');
-		$valuestore->put('margin_markup', '10');
+		$valuestore->put('problem_postcodes', 'AB,BT,CA,DD,DG,EH,FK,G,HS,IM,IV,KA,KA,KW,KY,ML,NE,PA,PA,PH,PL,PO,SR,TD,TQ,TR,ZE');
 		
 		$this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'delivery');
     }

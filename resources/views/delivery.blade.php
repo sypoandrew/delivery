@@ -13,8 +13,8 @@
 			<input type="text" id="enabled" name="enabled" autocomplete="off" required="required" class="w-full " value="{{ setting('Delivery.enabled') }}">
 			</div>
 			<div class="mt-4 w-full">
-			<label for="fortified_wine_rate" class="block">Problem Postcodes</label>
-			<input type="text" id="fortified_wine_rate" name="fortified_wine_rate" autocomplete="off" required="required" class="w-full " value="">
+			<label for="problem_postcodes" class="block">Problem Postcodes</label>
+			<input type="text" id="problem_postcodes" name="problem_postcodes" autocomplete="off" required="required" class="w-full " value="">
 			</div>
 		</div>
 		
