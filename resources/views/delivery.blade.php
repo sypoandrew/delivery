@@ -9,8 +9,12 @@
 		<div class="card mt-4 w-full">
 			<h3>Custom delivery settings</h3>
 			<div class="mt-4 w-full">
-			<label for="enabled" class="block">Enabled</label>
-			<input type="text" id="enabled" name="enabled" autocomplete="off" required="required" class="w-full " value="{{ setting('Delivery.enabled') }}">
+			<label for="enabled" class="block">
+			<label class="checkbox">
+			<input type="checkbox" id="enabled" name="enabled" value="1">
+			<span></span>
+			</label>Enabled
+			</label>
 			</div>
 			<div class="mt-4 w-full">
 			<label for="problem_postcodes" class="block">Problem Postcodes</label>
