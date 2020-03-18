@@ -31,5 +31,26 @@ class ServiceProvider extends ModuleServiceProvider
 		$valuestore->put('problem_postcodes', 'AB,BT,CA,DD,DG,EH,FK,G,HS,IM,IV,KA,KA,KW,KY,ML,NE,PA,PA,PH,PL,PO,SR,TD,TQ,TR,ZE');
 		
 		$this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'delivery');
+		
+		PaymentMethod::setCartValidator(function ($method, $cart) {
+			#Log::debug('checking payment methods');
+			#Log::debug($method->driver);
+			
+			$delivery_postcode = 'LA96AD';
+			
+			if($method->driver == 'realex'){
+				#hide if postcode is in problem_postcodes
+				$problem_postcodes_r = explode(',', setting('problem_postcodes'));
+				Log::debug($problem_postcodes_r);
+				foreach($problem_postcodes_r as $pp){
+					if(substr($delivery_postcode, 0, strlen($pp)) == $pp){
+						return false;
+					}
+				}
+			}
+			
+			#default handling
+			return true;
+		});
     }
 }
