@@ -8,6 +8,7 @@ use Aero\Common\Facades\Settings;
 use Aero\Common\Settings\SettingGroup;
 use Aero\Payment\Models\PaymentMethod;
 use Spatie\Valuestore\Valuestore;
+use Illuminate\Support\Facades\Log;
 
 class ServiceProvider extends ModuleServiceProvider
 {
@@ -34,10 +35,13 @@ class ServiceProvider extends ModuleServiceProvider
 		$this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'delivery');
 		
 		PaymentMethod::setCartValidator(function ($method, $cart) {
-			#Log::debug('checking payment methods');
+			Log::debug('checking payment methods for problem postcodes');
 			#Log::debug($method->driver);
 			
-			$delivery_postcode = 'LA96AD';
+			$order = $cart->order();
+			$address = $order->shippingAddress;
+			$delivery_postcode = $address->postcode;
+			Log::debug($delivery_postcode);
 			
 			if($method->driver == 'realex'){
 				#hide if postcode is in problem_postcodes
