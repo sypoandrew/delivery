@@ -7,6 +7,7 @@ use Aero\Common\Providers\ModuleServiceProvider;
 use Aero\Common\Facades\Settings;
 use Aero\Common\Settings\SettingGroup;
 use Aero\Payment\Models\PaymentMethod;
+use Sypo\Delivery\Models\Delivery;
 use Spatie\Valuestore\Valuestore;
 use Illuminate\Support\Facades\Log;
 
@@ -38,19 +39,15 @@ class ServiceProvider extends ModuleServiceProvider
 			Log::debug('checking payment methods for problem postcodes');
 			#Log::debug($method->driver);
 			
-			$order = $cart->order();
-			$address = $order->shippingAddress;
-			$delivery_postcode = $address->postcode;
-			Log::debug($delivery_postcode);
-			
-			if($method->driver == 'realex'){
-				#hide if postcode is in problem_postcodes
-				$problem_postcodes_r = explode(',', setting('problem_postcodes'));
-				Log::debug($problem_postcodes_r);
-				foreach($problem_postcodes_r as $pp){
-					if(substr($delivery_postcode, 0, strlen($pp)) == $pp){
-						return false;
-					}
+			if(setting('Delivery.enabled')){
+				$order = $cart->order();
+				$address = $order->shippingAddress;
+				$delivery_postcode = $address->postcode;
+				Log::debug($delivery_postcode);
+				
+				if($method->driver == 'realex'){
+					#hide if postcode is in problem_postcodes
+					return Delivery::allowed_postcode($delivery_postcode);
 				}
 			}
 			

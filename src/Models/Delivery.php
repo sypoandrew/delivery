@@ -16,8 +16,9 @@ class Delivery
      */
     public static function allowed_postcode($postcode)
     {
-		$valuestore = Valuestore::make(storage_path('app/dutytax.json'));
-		$codes = explode(',', $valuestore->get('problem_postcodes'));
+		#$valuestore = Valuestore::make(storage_path('app/dutytax.json'));
+		#$codes = explode(',', $valuestore->get('problem_postcodes'));
+		$codes = explode(',', setting('Delivery.problem_postcodes'));
 		
 		$rv = true;
 		foreach($codes as $code){
