@@ -29,30 +29,10 @@ class ServiceProvider extends ModuleServiceProvider
             $group->string('problem_postcodes')->default('AB,BT,CA,DD,DG,EH,FK,G,HS,IM,IV,KA,KA,KW,KY,ML,NE,PA,PA,PH,PL,PO,SR,TD,TQ,TR,ZE');
         });
 		
-		$valuestore = Valuestore::make(storage_path('app/delivery.json'));
-		$valuestore->put('enabled', '1');
-		$valuestore->put('problem_postcodes', 'AB,BT,CA,DD,DG,EH,FK,G,HS,IM,IV,KA,KA,KW,KY,ML,NE,PA,PA,PH,PL,PO,SR,TD,TQ,TR,ZE');
+		#$valuestore = Valuestore::make(storage_path('app/delivery.json'));
+		#$valuestore->put('enabled', '1');
+		#$valuestore->put('problem_postcodes', 'AB,BT,CA,DD,DG,EH,FK,G,HS,IM,IV,KA,KA,KW,KY,ML,NE,PA,PA,PH,PL,PO,SR,TD,TQ,TR,ZE');
 		
 		$this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'delivery');
-		
-		PaymentMethod::setCartValidator(function ($method, $cart) {
-			Log::debug('checking payment methods for problem postcodes');
-			#Log::debug($method->driver);
-			
-			if(setting('Delivery.enabled')){
-				$order = $cart->order();
-				$address = $order->shippingAddress;
-				$delivery_postcode = $address->postcode;
-				Log::debug($delivery_postcode);
-				
-				if($method->driver == 'realex'){
-					#hide if postcode is in problem_postcodes
-					return Delivery::allowed_postcode($delivery_postcode);
-				}
-			}
-			
-			#default handling
-			return true;
-		});
     }
 }
