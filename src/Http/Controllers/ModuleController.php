@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Aero\Admin\Facades\Admin;
 use Aero\Admin\Http\Controllers\Controller;
-use Spatie\Valuestore\Valuestore;
 use Sypo\Delivery\Models\Delivery;
 use Illuminate\Http\RedirectResponse;
 
@@ -21,10 +20,7 @@ class ModuleController extends Controller
      */
     public function index(Request $request)
     {
-        #$valuestore = Valuestore::make(storage_path('app/delivery.json'));
-		#$this->data['valuestore'] = $valuestore->all();
-		
-		return view('delivery::delivery', $this->data);
+        return view('delivery::delivery', $this->data);
     }
     
 	/**
@@ -53,11 +49,6 @@ class ModuleController extends Controller
 			Log::debug($formdata['problem_postcodes']);
 			
 			$formdata['enabled'] = (!isset($formdata['enabled'])) ? 0 : $formdata['enabled'];
-			
-			#$valuestore = Valuestore::make(storage_path('app/delivery.json'));
-			#$valuestore->put('enabled', $formdata['enabled']);
-			#$valuestore->put('problem_postcodes', $formdata['problem_postcodes']);
-			#Log::debug($valuestore->get('problem_postcodes'));
 			
 			
 			return redirect(route('admin.modules.delivery'))->with('status', 'Settings updated!');

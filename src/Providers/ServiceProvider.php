@@ -8,7 +8,6 @@ use Aero\Common\Facades\Settings;
 use Aero\Common\Settings\SettingGroup;
 use Aero\Payment\Models\PaymentMethod;
 use Sypo\Delivery\Models\Delivery;
-use Spatie\Valuestore\Valuestore;
 use Illuminate\Support\Facades\Log;
 
 class ServiceProvider extends ModuleServiceProvider
@@ -28,10 +27,6 @@ class ServiceProvider extends ModuleServiceProvider
             $group->boolean('enabled')->default(true);
             $group->string('problem_postcodes')->default('AB,BT,CA,DD,DG,EH,FK,G,HS,IM,IV,KA,KA,KW,KY,ML,NE,PA,PA,PH,PL,PO,SR,TD,TQ,TR,ZE');
         });
-		
-		#$valuestore = Valuestore::make(storage_path('app/delivery.json'));
-		#$valuestore->put('enabled', '1');
-		#$valuestore->put('problem_postcodes', 'AB,BT,CA,DD,DG,EH,FK,G,HS,IM,IV,KA,KA,KW,KY,ML,NE,PA,PA,PH,PL,PO,SR,TD,TQ,TR,ZE');
 		
 		$this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'delivery');
     }
