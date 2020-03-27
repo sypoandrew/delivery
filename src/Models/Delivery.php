@@ -4,7 +4,6 @@ namespace Sypo\Delivery\Models;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
-use Spatie\Valuestore\Valuestore;
 
 class Delivery
 {

@@ -21,8 +21,8 @@ class ModuleController extends Controller
      */
     public function index(Request $request)
     {
-        $valuestore = Valuestore::make(storage_path('app/delivery.json'));
-		$this->data['valuestore'] = $valuestore->all();
+        #$valuestore = Valuestore::make(storage_path('app/delivery.json'));
+		#$this->data['valuestore'] = $valuestore->all();
 		
 		return view('delivery::delivery', $this->data);
     }
@@ -54,10 +54,10 @@ class ModuleController extends Controller
 			
 			$formdata['enabled'] = (!isset($formdata['enabled'])) ? 0 : $formdata['enabled'];
 			
-			$valuestore = Valuestore::make(storage_path('app/delivery.json'));
-			$valuestore->put('enabled', $formdata['enabled']);
-			$valuestore->put('problem_postcodes', $formdata['problem_postcodes']);
-			Log::debug($valuestore->get('problem_postcodes'));
+			#$valuestore = Valuestore::make(storage_path('app/delivery.json'));
+			#$valuestore->put('enabled', $formdata['enabled']);
+			#$valuestore->put('problem_postcodes', $formdata['problem_postcodes']);
+			#Log::debug($valuestore->get('problem_postcodes'));
 			
 			
 			return redirect(route('admin.modules.delivery'))->with('status', 'Settings updated!');
