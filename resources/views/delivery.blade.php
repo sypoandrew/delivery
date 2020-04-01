@@ -2,7 +2,10 @@
 
 @section('content')
     <div class="flex pb-2 mb-4">
-        <h2 class="flex-1 m-0 p-0">VinQuinn custom delivery settings</h2>
+        <h2 class="flex-1 m-0 p-0">
+		<a href="{{ route('admin.modules') }}" class="btn mr-4">&#171; Back</a>
+		<span class="flex-1">VinQuinn custom delivery settings</span>
+		</h2>
     </div>
 	@if (session('status'))
 		<div class="alert alert-success">
