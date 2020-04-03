@@ -51,7 +51,7 @@ class ModuleController extends Controller
 			$formdata['enabled'] = (!isset($formdata['enabled'])) ? 0 : $formdata['enabled'];
 			
 			
-			return redirect(route('admin.modules.delivery'))->with('status', 'Settings updated!');
+			return redirect()->back()->with('message', 'Settings updated.');
 		}
 		else{
 			abort(403);
