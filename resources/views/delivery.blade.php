@@ -7,11 +7,6 @@
 		<span class="flex-1">VinQuinn custom delivery settings</span>
 		</h2>
     </div>
-	@if (session('status'))
-		<div class="alert alert-success">
-			{{ session('status') }}
-		</div>
-	@endif
 	
     @include('admin::partials.alerts')
 	<form action="{{ route('admin.modules.delivery') }}" method="post" class="flex flex-wrap">
@@ -36,7 +31,8 @@
 			</div>
 		</div>
 		
-		<div class="card mt-4 p-4 w-full flex flex-wrap"><button type="submit" class="btn btn-secondary">Save</button> </div>
+		<!--<div class="card mt-4 p-4 w-full flex flex-wrap"><button type="submit" class="btn btn-secondary">Save</button> </div>-->
+		<div class="card mt-4 p-4 w-full flex flex-wrap"><p>Please contact SYPO to update these settings.</p></div>
 	</form>
 		
 @endsection
