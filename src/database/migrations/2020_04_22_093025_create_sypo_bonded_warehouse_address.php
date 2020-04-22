@@ -15,14 +15,14 @@ class CreateSypoBondedWarehouseAddress extends Migration
     {
         Schema::create('sypo_bonded_warehouse_address', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('first');
-            $table->string('last');
-            $table->string('line1');
-            $table->string('line2');
-            $table->string('city');
-            $table->string('county');
-            $table->string('postcode');
+            $table->string('name')->nullable();
+            $table->string('first')->nullable();
+            $table->string('last')->nullable();
+            $table->string('line1')->nullable();
+            $table->string('line2')->nullable();
+            $table->string('city')->nullable();
+            $table->string('county')->nullable();
+            $table->string('postcode')->nullable();
             $table->char('country_code', 2);
             $table->timestamps();
             
