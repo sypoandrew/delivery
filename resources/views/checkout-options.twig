@@ -1,11 +1,12 @@
 <div class="checkout__section checkout__warehouse-address">
-	<h2>{{ trans("checkout::titles.shipping_address") }}</h2>
+	<h2>Bonded Warehouse</h2>
+	<p class="mb-6">Please select desired bonded warehouse</p>
 	<div class="addresses checkout__list warehouse-location">
 		<ul>
 			{% for warehouse in warehouses %}
 				<li>
 					<label>
-						<input type="radio" name="warehouse_address_id" value="{{ warehouse.id }}"  data-address="{{ warehouse.name }}, {{ warehouse.formatted }}" >
+						<input type="radio" name="warehouse_address_id" value="{{ warehouse.id }}"  data-address="{{ warehouse.name }}, {{ warehouse.formatted }}">
 						<span><strong>{{ warehouse.name }}</strong>, {{ warehouse.formatted_alt }}</span>
 					</label>
 				</li>
