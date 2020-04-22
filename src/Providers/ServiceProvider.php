@@ -28,6 +28,7 @@ class ServiceProvider extends ModuleServiceProvider
             $group->string('problem_postcodes')->default('AB,BT,CA,DD,DG,EH,FK,G,HS,IM,IV,KA,KA,KW,KY,ML,NE,PA,PA,PH,PL,PO,SR,TD,TQ,TR,ZE');
         });
 		
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 		$this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'delivery');
     }
 }
