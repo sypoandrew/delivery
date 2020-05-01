@@ -1,6 +1,6 @@
 <div class="checkout__section checkout__warehouse-address">
 	<h2>Bonded Warehouse</h2>
-	<p class="mb-6">Please select desired bonded warehouse</p>
+	<p class="mb-6">{{ blocks('checkout.bonded.select.message') | first | raw }}</p>
 	<div class="addresses checkout__list warehouse-location">
 		<ul>
 			{% for warehouse in warehouses %}
@@ -12,7 +12,7 @@
 						{% set address_label = warehouse.name ~ ', ' ~ warehouse.formatted %}
 						{% endif %}
 						<input type="radio" name="warehouse_address_id" value="{{ warehouse.id }}"  data-address="{{ address_label }}">
-						<span><strong>{{ warehouse.name }}</strong>{% if (warehouse.formatted_alt | trim) != '' %}, {% endif %}{{ warehouse.formatted_alt }}<strong class="text-right pull-right">{{ currency(warehouse.price) }}</strong></span>
+						<span><span class="label"><strong>{{ warehouse.name }}</strong>{% if (warehouse.formatted_alt | trim) != '' %}, {% endif %}{{ warehouse.formatted_alt }}</span><strong class="text-right pull-right">{% if warehouse.is_tbc %}TBC{% else %}{{ currency(warehouse.price) }}{% endif %}</strong></span>
 					</label>
 				</li>
 			{% endfor %}
