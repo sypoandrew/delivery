@@ -89,6 +89,21 @@ class BondedWarehouseAddress extends Model
         return $this->belongsTo(Country::class);
     }
 
+    /**
+     * Clear current selected bonded delivery item from cart
+     *
+     * @return string|null
+     */
+    public static function removeBondedDeliveryItemFromOrder(\Aero\Cart\Cart $cart): void
+    {
+        $items = $cart->items();
+        foreach($items as $item){
+			if(substr($item->loadModel()->product()->first()->model, 0, 5) == 'BOND-'){
+				$cart->remove($item->id);
+			}
+		}
+    }
+
     /*
     |--------------------------------------------------------------------------
     | SCOPES

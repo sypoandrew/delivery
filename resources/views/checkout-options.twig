@@ -6,8 +6,13 @@
 			{% for warehouse in warehouses %}
 				<li>
 					<label>
-						<input type="radio" name="warehouse_address_id" value="{{ warehouse.id }}"  data-address="{{ warehouse.name }}, {{ warehouse.formatted }}">
-						<span><strong>{{ warehouse.name }}</strong>, {{ warehouse.formatted_alt }}</span>
+						{% if (warehouse.formatted | trim) == '' %}
+						{% set address_label = warehouse.name %}
+						{% else %}
+						{% set address_label = warehouse.name ~ ', ' ~ warehouse.formatted %}
+						{% endif %}
+						<input type="radio" name="warehouse_address_id" value="{{ warehouse.id }}"  data-address="{{ address_label }}">
+						<span><strong>{{ warehouse.name }}</strong>{% if (warehouse.formatted_alt | trim) != '' %}, {% endif %}{{ warehouse.formatted_alt }}</span>
 					</label>
 				</li>
 			{% endfor %}
