@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
 use Aero\Common\Models\Country;
+use Aero\Catalog\Models\Product;
 
 class BondedWarehouseAddress extends Model
 {
@@ -73,20 +74,17 @@ class BondedWarehouseAddress extends Model
         ])->filter()->implode(', ');
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | RELATIONS
-    |--------------------------------------------------------------------------
-    */
-
     /**
-     * The country for this address.
+     * Clear current selected bonded delivery item from cart
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return string|null
      */
-    public function country(): BelongsTo
+    public function getPriceAttribute(): float
     {
-        return $this->belongsTo(Country::class);
+        if($this->model){
+			return Product::where('model', $this->model)->first()->lowest_price->value;
+		}
+		return 0.00;
     }
 
     /**
@@ -102,6 +100,22 @@ class BondedWarehouseAddress extends Model
 				$cart->remove($item->id);
 			}
 		}
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | RELATIONS
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * The country for this address.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class);
     }
 
     /*
