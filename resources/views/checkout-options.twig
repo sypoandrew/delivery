@@ -1,7 +1,11 @@
 <div class="checkout__section checkout__warehouse-address">
 	<h2>Bonded Warehouse</h2>
 	<p class="mb-6">{{ blocks('checkout.bonded.select.message') | first | raw }}</p>
-	<div class="addresses checkout__list warehouse-location">
+	<div class="addresses checkout__list warehouse-location{% if errors.first("warehouse_address_id") != '' %} checkout__list__error{% endif %}">
+		{% if errors.first("warehouse_address_id") != '' %}
+		<span class="field__error" role="alert">{{ errors.first("warehouse_address_id") }}</span>
+		{% endif %}
+		
 		<ul>
 			{% for warehouse in warehouses %}
 				<li>

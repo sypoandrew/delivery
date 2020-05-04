@@ -102,6 +102,16 @@ class BondedWarehouseAddress extends Model
 		}
     }
 
+    /**
+     * Get all unique models
+     *
+     * @return array
+     */
+    public static function getModels(): array
+    {
+        return self::select('model')->distinct()->whereNotNull('model')->where('model', '!=', '')->pluck('model')->toArray();
+    }
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
