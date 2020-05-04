@@ -32,7 +32,7 @@ class CreateSypoBondedWarehouseAddress extends Migration
 			$table->foreign('country_code')->references('code')->on('countries');
         });
 
-        \DB::table('sypo_bonded_warehouse_address')->insert(array('name' => 'Store with VinQuinn)', 'country_code' =>'GB', 'model' => '', 'created_at' => \Carbon\Carbon::now()));
+        \DB::table('sypo_bonded_warehouse_address')->insert(array('name' => 'Store with VinQuinn', 'country_code' =>'GB', 'model' => '', 'created_at' => \Carbon\Carbon::now()));
         \DB::table('sypo_bonded_warehouse_address')->insert(array('name' => 'LCB Tilbury', 'first' => 'LCB', 'last' => 'Tilbury', 'line1' => '29-30 Berths', 'line2' => 'Tilbury Freeport', 'city' => 'Tilbury', 'county' => 'Essex', 'postcode' => 'RM18 7EH', 'country_code' =>'GB', 'model' => 'BOND-10', 'created_at' => \Carbon\Carbon::now()));
         \DB::table('sypo_bonded_warehouse_address')->insert(array('name' => 'LCB Vinotheque', 'first' => 'LCB', 'last' => 'Vinotheque', 'line1' => 'Derby Road', 'line2' => '', 'city' => 'Burton-Upon-Trent', 'county' => 'Staffordshire', 'postcode' => 'DE14 1RY', 'country_code' =>'GB', 'model' => 'BOND-10', 'created_at' => \Carbon\Carbon::now()));
         \DB::table('sypo_bonded_warehouse_address')->insert(array('name' => 'LCB Dinton Woods', 'first' => 'LCB', 'last' => 'Dinton Woods', 'line1' => 'Catherine Ford Lane', 'line2' => '', 'city' => 'Salisbury', 'county' => 'Wiltshire', 'postcode' => 'SP3 5HB', 'country_code' =>'GB', 'model' => 'BOND-10', 'created_at' => \Carbon\Carbon::now()));

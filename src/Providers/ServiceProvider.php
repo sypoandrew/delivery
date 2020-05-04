@@ -15,10 +15,16 @@ class ServiceProvider extends ModuleServiceProvider
     public function register(): void 
     {
         AdminModule::create('Delivery')
-            ->title('VinQuinn Delivery')
+            ->title('Problem Delivery Postcodes')
             ->summary('Custom delivery settings for Aero Commerce')
             ->routes(__DIR__ .'/../../routes/admin.php')
             ->route('admin.modules.delivery');
+        
+        AdminModule::create('Warehouse')
+            ->title('Bonded Warehouse Locations')
+            ->summary('Bonded warehouse addresses for under-bond orders')
+            ->routes(__DIR__ .'/../../routes/admin.php')
+            ->route('admin.modules.warehouse');
     }
 	
     public function boot(): void 
