@@ -3,11 +3,11 @@
 namespace Sypo\Delivery\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Aero\Admin\Facades\Admin;
 use Aero\Admin\Http\Controllers\Controller;
 use Sypo\Delivery\Models\Delivery;
 use Illuminate\Http\RedirectResponse;
+use Spatie\Valuestore\Valuestore;
 
 class ModuleController extends Controller
 {
@@ -30,25 +30,18 @@ class ModuleController extends Controller
      */
     public function update(Request $request)
     {
-		$res = ['success'=>false,'data'=>false,'error'=>[]];
-		
 		if($request->isMethod('post')) {
 			$validator = \Validator::make($request->all(), [
 				'problem_postcodes' => 'required',
 			]);
 			
 			if($validator->fails()){
-				$res['error'] = $validator->errors()->all();
-				#return response()->json($res);
-				return Redirect::back()->withErrors($res['error']);
+				return redirect()->back()->withErrors($validator->errors()->all());
 			}
 			
-			$formdata = $request->all();
-			Log::debug($formdata);
-			#dd($formdata);
-			Log::debug($formdata['problem_postcodes']);
-			
-			$formdata['enabled'] = (!isset($formdata['enabled'])) ? 0 : $formdata['enabled'];
+			$valuestore = Valuestore::make(storage_path('app/settings/Delivery.json'));
+			$valuestore->put('enabled', (int) $request->input('enabled'));
+			$valuestore->put('problem_postcodes', $request->input('problem_postcodes'));
 			
 			
 			return redirect()->back()->with('message', 'Settings updated.');
