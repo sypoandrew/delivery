@@ -44,7 +44,7 @@ class ModuleController extends Controller
 			$valuestore->put('problem_postcodes', $request->input('problem_postcodes'));
 			
 			
-			return redirect()->back()->with('message', 'Settings updated.');
+			return redirect()->back()->with('message', 'Settings updated');
 		}
 		else{
 			abort(403);
