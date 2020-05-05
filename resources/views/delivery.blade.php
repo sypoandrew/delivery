@@ -4,7 +4,7 @@
     <div class="flex pb-2 mb-4">
         <h2 class="flex-1 m-0 p-0">
 		<a href="{{ route('admin.modules') }}" class="btn mr-4">&#171; Back</a>
-		<span class="flex-1">VinQuinn custom delivery settings</span>
+		<span class="flex-1">Problem postcode handling</span>
 		</h2>
     </div>
 	
@@ -12,7 +12,7 @@
 	<form action="{{ route('admin.modules.delivery') }}" method="post" class="flex flex-wrap">
 		@csrf
 		<div class="card mt-4 w-full">
-			<h3>Custom delivery settings</h3>
+			<h3>Settings</h3>
 			<div class="mt-4 w-full">
 			<label for="enabled" class="block">
 			<label class="checkbox">
