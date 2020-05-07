@@ -16,7 +16,7 @@
 						{% set address_label = warehouse.name ~ ', ' ~ warehouse.formatted %}
 						{% endif %}
 						<input type="radio" name="warehouse_address_id" value="{{ warehouse.id }}"  data-address="{{ address_label }}">
-						<span><span class="label"><strong>{{ warehouse.name }}</strong>{% if (warehouse.formatted_alt | trim) != '' %}, {% endif %}{{ warehouse.formatted_alt }}</span><strong class="text-right pull-right">{% if warehouse.is_tbc %}TBC{% else %}{{ currency(warehouse.price) }}{% endif %}</strong></span>
+						<span><span class="label"><strong>{{ warehouse.name }}</strong>{% if (warehouse.formatted_alt | trim) != '' %}, {% endif %}{{ warehouse.formatted_alt }}</span><strong class="text-right pull-right">{% if warehouse.is_tbc %}TBC{% else %}{{ currency(warehouse.price) == 'FREE' ? '' : currency(warehouse.price) }}{% endif %}</strong></span>
 					</label>
 				</li>
 			{% endfor %}
