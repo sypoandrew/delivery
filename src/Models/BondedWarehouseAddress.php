@@ -121,7 +121,7 @@ class BondedWarehouseAddress extends Model
     public static function createModels(): void
     {
         $language = config('app.locale');
-        $vat_rate = Aero\Common\Models\TaxRate::where('name', 'like', '%VAT%')->first()->rate;
+        $vat_rate = \Aero\Common\Models\TaxRate::where('name', 'like', '%VAT%')->first()->rate;
         $models = self::getModels();
         foreach($models as $model){
 			$p = Product::where('model', $model)->first();
