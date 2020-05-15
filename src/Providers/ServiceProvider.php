@@ -8,6 +8,7 @@ use Aero\Common\Facades\Settings;
 use Aero\Common\Settings\SettingGroup;
 use Aero\Payment\Models\PaymentMethod;
 use Sypo\Delivery\Models\Delivery;
+use Sypo\Delivery\Models\BondedWarehouseAddress;
 use Illuminate\Support\Facades\Log;
 
 class ServiceProvider extends ModuleServiceProvider
@@ -36,5 +37,8 @@ class ServiceProvider extends ModuleServiceProvider
 		
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 		$this->loadViewsFrom(__DIR__ . '/../../resources/views/', 'delivery');
+		
+		#auto create delivery products...
+		BondedWarehouseAddress::createModels();
     }
 }
