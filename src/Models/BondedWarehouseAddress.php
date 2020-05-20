@@ -96,8 +96,9 @@ class BondedWarehouseAddress extends Model
     public static function removeBondedDeliveryItemFromOrder(\Aero\Cart\Cart $cart): void
     {
         $items = $cart->items();
+		$models = self::getModels();
         foreach($items as $item){
-			if(substr($item->loadModel()->product()->first()->model, 0, 5) == 'BOND-'){
+			if(in_array($item->sku, $models)){
 				$cart->remove($item->id);
 			}
 		}
