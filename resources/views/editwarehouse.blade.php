@@ -23,6 +23,13 @@
 			<div class="mt-4 flex-1 flex flex-col"><label for="postcode" class="block">Postcode</label> <input type="text" id="postcode" name="postcode" autocomplete="off" class="w-full" value="{{ $bondedwarehouseaddress->postcode }}"></div>
 			<div class="mt-4 flex-1 flex flex-col"><label for="country_code" class="block">Country code</label> <input type="text" id="country_code" name="country_code" autocomplete="off" class="w-full" value="{{ $bondedwarehouseaddress->country_code }}"></div>
 			<div class="mt-4 flex-1 flex flex-col"><label for="model" class="block">Delivery product SKU</label> <input type="text" id="model" name="model" autocomplete="off" class="w-full" value="{{ $bondedwarehouseaddress->model }}"></div>
+			<div class="mt-4 flex-1 flex flex-col"><label for="allow_ep" class="block"><label class="checkbox">
+			@if ($bondedwarehouseaddress->allow_ep)
+			<input type="checkbox" id="allow_ep" name="allow_ep" autocomplete="off" value="1" class="w-full" checked>
+			@else
+			<input type="checkbox" id="allow_ep" name="allow_ep" autocomplete="off" value="1" class="w-full">
+			@endif
+			<span></span></label> Allow for En Primeur orders?</label></div>
 			<div class="mt-4 flex-1 flex flex-col"><label for="is_tbc" class="block"><label class="checkbox">
 			@if ($bondedwarehouseaddress->is_tbc)
 			<input type="checkbox" id="is_tbc" name="is_tbc" autocomplete="off" value="1" class="w-full" checked>

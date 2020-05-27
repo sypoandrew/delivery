@@ -64,6 +64,7 @@ class WarehouseModuleController extends Controller
 			$b->postcode = $request->input('postcode');
 			$b->country_code = $request->input('country_code');
 			$b->model = $request->input('model');
+			$b->allow_ep = ($request->input('allow_ep')) ? true : false;
 			$b->is_tbc = ($request->input('is_tbc')) ? true : false;
 			$b->save();
 			
