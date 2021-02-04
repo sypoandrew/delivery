@@ -19,7 +19,7 @@ class Delivery
 		
 		$rv = true;
 		foreach($codes as $code){
-			if(substr($postcode, 0, strlen($code)) == $code){
+			if(substr(strtoupper($postcode), 0, strlen($code)) == strtoupper($code)){
 				$rv = false;
 				break;
 			}
